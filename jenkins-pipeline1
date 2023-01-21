@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+    stages {
+        stage("creating file") {
+            steps {
+                sh 'touch akshay'
+            }
+        }
+        stage("adding data in file") {
+            steps {
+                sh 'echo "hai this is data adding job" > akshay'
+            }
+        }
+        stage("creating a file") {
+            steps {
+                sh 'mkdir bhale2'
+            }
+        }
+        stage ("copy the file") {
+            steps {
+                sh 'cp akshay bhale1'
+            }
+        }
+        stage ("ENV2") {
+            environment {
+                name='akshay'
+                
+            }
+                steps {
+                    sh 'echo "hi my name is $name"'
+                }
+            }
+            stage ("git") {
+                steps {
+                    git 'https://github.com/akshaybhale007/bhale.git'
+                }
+                
+            }
+        }
+    }
